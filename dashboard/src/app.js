@@ -84,6 +84,13 @@ function el(parent, tag, attrs = {}, text) {
   if (text !== undefined) e.textContent = text;
   parent.appendChild(e); return e;
 }
+let gid = 0;
+function grad(s, color, o1 = 0.32, o2 = 0, vertical = true) {
+  let defs = s.querySelector("defs"); if (!defs) defs = el(s, "defs");
+  const id = "g" + (++gid), g = el(defs, "linearGradient", { id, x1: 0, y1: 0, x2: vertical ? 0 : 1, y2: vertical ? 1 : 0 });
+  el(g, "stop", { offset: "0%", "stop-color": color, "stop-opacity": o1 }); el(g, "stop", { offset: "100%", "stop-color": color, "stop-opacity": o2 });
+  return `url(#${id})`;
+}
 function niceTicks(lo, hi, n = 4) {
   const span = hi - lo || 1, step0 = span / n, mag = Math.pow(10, Math.floor(Math.log10(step0)));
   const step = [1, 2, 2.5, 5, 10].map(x => x * mag).find(x => span / x <= n) || step0;
@@ -106,12 +113,19 @@ function lineChart(host, labels, series, opt = {}) {
   const every = Math.max(1, Math.ceil(labels.length / Math.max(2, Math.floor((w - L) / 70))));
   labels.forEach((lb, i) => { if (i % every === 0) el(s, "text", { x: X(i), y: h - 8, "text-anchor": "middle" }, opt.xf ? opt.xf(lb) : lb); });
   if (opt.band) el(s, "rect", { x: X(opt.band[0]) , y: T, width: X(opt.band[1]) - X(opt.band[0]), height: h - T - Bm, fill: css("--warn"), opacity: 0.09 });
-  if (opt.ref != null) { el(s, "line", { x1: L, x2: w - R, y1: Y(opt.ref), y2: Y(opt.ref), stroke: css("--muted"), "stroke-dasharray": "4 4", "stroke-width": 1.2 }); }
-  series.forEach(se => {
+  series.forEach((se, k) => {
     const d = se.pts.map((p, j) => (j ? "L" : "M") + X(p.i).toFixed(1) + "," + Y(p.y).toFixed(1)).join("");
-    el(s, "path", { d, fill: "none", stroke: se.color, "stroke-width": se.width || 2, "stroke-dasharray": se.dash || "", "stroke-linejoin": "round", "stroke-linecap": "round" });
-    if (se.dots) se.pts.forEach(p => el(s, "circle", { cx: X(p.i), cy: Y(p.y), r: 3.5, fill: se.color }));
+    if (k === 0 && opt.area !== false) el(s, "path", { d: d + `L${X(se.pts[se.pts.length - 1].i).toFixed(1)},${h - Bm}L${X(se.pts[0].i).toFixed(1)},${h - Bm}Z`, fill: grad(s, se.color, 0.28, 0) });
+    el(s, "path", { d, fill: "none", stroke: se.color, "stroke-width": se.width || 2.5, "stroke-dasharray": se.dash || "", "stroke-linejoin": "round", "stroke-linecap": "round" });
+    if (se.dots) se.pts.forEach(p => el(s, "circle", { cx: X(p.i), cy: Y(p.y), r: 4, fill: se.color, stroke: css("--surface"), "stroke-width": 2 }));
+    if (opt.endLabel && k === 0) { const p = se.pts[se.pts.length - 1]; el(s, "circle", { cx: X(p.i), cy: Y(p.y), r: 5, fill: se.color, stroke: css("--surface"), "stroke-width": 2.5 }); }
   });
+  if (opt.ref != null) {
+    el(s, "line", { x1: L, x2: w - R, y1: Y(opt.ref), y2: Y(opt.ref), stroke: css("--ink"), opacity: 0.55, "stroke-dasharray": "5 5", "stroke-width": 1.3 });
+    const lt = opt.refLabel || "Target"; const bx = w - R - (lt.length * 6.4 + 14);
+    el(s, "rect", { x: bx, y: Y(opt.ref) - 20, width: lt.length * 6.4 + 14, height: 17, rx: 8.5, fill: css("--ink") });
+    el(s, "text", { x: bx + 7, y: Y(opt.ref) - 8, style: "fill:var(--surface);font-size:10.5px;font-weight:700" }, lt);
+  }
   // hover layer
   const cross = el(s, "line", { y1: T, y2: h - Bm, stroke: css("--muted"), "stroke-width": 1, opacity: 0 });
   const hit = el(s, "rect", { x: L, y: T, width: w - L - R, height: h - T - Bm, fill: "transparent" });
@@ -127,17 +141,17 @@ function lineChart(host, labels, series, opt = {}) {
 
 /* horizontal 100% stacked bars */
 function stackBars(host, items, parts) {
-  const rowH = 30, { s, w } = svg(host, items.length * rowH + 8);
+  const rowH = 38, { s, w } = svg(host, items.length * rowH + 8);
   const L = 112, R = 8;
   items.forEach((it, j) => {
     const y = 4 + j * rowH; let x = L;
-    el(s, "text", { x: L - 8, y: y + 17, "text-anchor": "end", class: "lbl" }, it.label);
+    el(s, "text", { x: L - 10, y: y + 19, "text-anchor": "end", class: "lbl" }, it.label);
     parts.forEach(p => {
       const v = it[p.key], wd = (w - L - R) * v;
       if (wd <= 0) return;
-      const r = el(s, "rect", { x: x + 1, y: y + 2, width: Math.max(0, wd - 2), height: rowH - 10, rx: 2, fill: p.color });
+      const r = el(s, "rect", { x: x + 1, y: y + 2, width: Math.max(0, wd - 2), height: rowH - 12, rx: 7, fill: p.color });
       hover(r, `<b>${it.label}</b><div>${p.name}: ${fmt.pct(v)}</div><div>${fmt.int(it.lines)} order lines</div>`);
-      if (wd > 40) el(s, "text", { x: x + wd / 2, y: y + 17, "text-anchor": "middle", fill: css("--surface"), style: "fill:var(--surface);font-family:var(--mono);font-size:11px" }, fmt.pct(v, 0));
+      if (wd > 40) el(s, "text", { x: x + wd / 2, y: y + 19, "text-anchor": "middle", style: "fill:#fff;font-weight:700;font-size:11.5px" }, fmt.pct(v, 0));
       x += wd;
     });
   });
@@ -154,7 +168,8 @@ function columns(host, items, opt = {}) {
   const bw = (w - L - R) / items.length;
   items.forEach((it, j) => {
     const x = L + j * bw + bw * 0.15, y0 = Y(Math.max(0, it.v)), y1 = Y(Math.min(0, it.v));
-    const r = el(s, "rect", { x, y: y0, width: bw * 0.7, height: Math.max(1, y1 - y0), rx: 3, fill: it.color || css("--accent") });
+    const c = it.color || css("--accent");
+    const r = el(s, "rect", { x, y: y0, width: bw * 0.7, height: Math.max(1, y1 - y0), rx: Math.min(6, bw * 0.2), fill: grad(s, c, 1, 0.55) });
     hover(r, it.tip || `<b>${it.label}</b><div>${opt.yf ? opt.yf(it.v) : it.v}</div>`);
     el(s, "text", { x: x + bw * 0.35, y: h - 10, "text-anchor": "middle" }, it.label);
     if (opt.labels) el(s, "text", { x: x + bw * 0.35, y: y0 - 4, "text-anchor": "middle", class: "lbl" }, opt.yf ? opt.yf(it.v) : it.v);
@@ -190,19 +205,25 @@ function renderOverview() {
   const tiles = [
     { k: "Order lines", v: fmt.int(k.lines), t: `${F.yr === "all" ? "33 months" : F.yr}` },
     ...TARGETS.slice(0, 4).map(tg => ({ k: tg.name, v: tg.f(k[tg.key]), tg })),
-    { k: "Discount given vs profit", v: fmt.pct(k.discVsProfit, 0), t: `${fmt.usd(t.discount)} discount · ${fmt.usd(t.profit)} profit` },
+    { k: "Discount given vs profit", alt: true, v: fmt.pct(k.discVsProfit, 0), t: `${fmt.usd(t.discount)} discount · ${fmt.usd(t.profit)} profit` },
   ];
   $("#kpis").innerHTML = tiles.map(x => {
     const chip = x.tg ? (passes(x.tg, k[x.tg.key]) ? '<span class="chip pass">on target</span>' : '<span class="chip fail">off target</span>') : "";
     const tl = x.tg ? `${chip}<span>target ${x.tg.op === ">=" ? "≥" : "≤"} ${x.tg.key === "slip" ? x.tg.target.toFixed(2) : fmt.pct(x.tg.target, 0)}</span>` : `<span>${x.t}</span>`;
-    return `<div class="kpi"><div class="k">${x.k}</div><div class="v">${x.v}</div><div class="t">${tl}</div></div>`;
+    let cls = "info", meter = "";
+    if (x.tg) {
+      const v = k[x.tg.key], ok = passes(x.tg, v); cls = ok ? "pass" : "fail";
+      const scale = x.tg.key === "slip" ? 1.5 : 1, pos = Math.min(1, v / scale), tp = Math.min(1, x.tg.target / scale);
+      meter = `<div class="meter"><span style="width:${(pos * 100).toFixed(1)}%"></span><i style="left:${(tp * 100).toFixed(1)}%"></i></div>`;
+    } else if (x.alt) cls = "alt";
+    return `<div class="kpi ${cls}"><div class="k">${x.k}</div><div class="v">${x.v}</div>${meter}<div class="t">${tl}</div></div>`;
   }).join("");
 
   const byM = group(A, rowsA(), r => A.dim(r, "month"), MEAS_A); const months = [...byM.keys()].sort();
   lineChart($("#c-ontime"), months, [{ name: "On-time", color: css("--accent"), pts: months.map((m, i) => ({ i, y: byM.get(m).on_time / byM.get(m).lines })) }],
-    { ref: 0.45, yf: (v, tip) => (v * 100).toFixed(tip ? 1 : 0) + "%", xf: mLabel });
-  lineChart($("#c-margin"), months, [{ name: "Margin", color: css("--good"), pts: months.map((m, i) => ({ i, y: byM.get(m).profit / byM.get(m).net })) }],
-    { ref: 0.12, yf: (v, tip) => (v * 100).toFixed(tip ? 1 : 0) + "%", xf: mLabel });
+    { ref: 0.45, refLabel: "Target 45%", endLabel: true, yf: (v, tip) => (v * 100).toFixed(tip ? 1 : 0) + "%", xf: mLabel });
+  lineChart($("#c-margin"), months, [{ name: "Margin", color: css("--accent2"), pts: months.map((m, i) => ({ i, y: byM.get(m).profit / byM.get(m).net })) }],
+    { ref: 0.12, refLabel: "Target 12%", endLabel: true, yf: (v, tip) => (v * 100).toFixed(tip ? 1 : 0) + "%", xf: mLabel });
 
   const byMode = group(A, rowsA(), r => A.dim(r, "shipping_mode"), MEAS_A);
   stackBars($("#c-modestack"), MODE_ORDER.filter(m => byMode.has(m)).map(m => { const g = byMode.get(m); return { label: m, lines: g.lines, on: g.on_time / g.lines, one: (g.within_tol - g.on_time) / g.lines, two: g.breach / g.lines }; }),
@@ -302,7 +323,7 @@ function renderForecast() {
     lineChart($(host), labels, [
       { name: "Actual", color: css("--accent"), pts: se.history.map((y, i) => ({ i, y })) },
       { name: se.best_model + " (test)", color: css("--warn"), dash: "5 4", pts: se.test_prediction.map((y, j) => ({ i: n - nt + j, y })) },
-      { name: "Forecast", color: css("--good"), width: 2.5, dots: true, pts: [{ i: n - 1, y: se.history[n - 1] }].concat(se.forecast.map((y, j) => ({ i: n + j, y }))) },
+      { name: "Forecast", color: css("--bad"), width: 3, dots: true, pts: [{ i: n - 1, y: se.history[n - 1] }].concat(se.forecast.map((y, j) => ({ i: n + j, y }))) },
     ], { yf, xf: mLabel, band: [n - nt, n - 1] });
   });
   const ms = Object.keys(D.F.series.orders.mape_by_model);

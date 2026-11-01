@@ -2,7 +2,7 @@
 
 **Where does a business lose time and money?** This project compares what was promised with what actually happened across **164,572 order lines** (54,854 orders, Jan 2015 to Sep 2017). It checks delivery days against the promise, margin against the category's normal margin and discounts against a cap. It also forecasts the next quarter and automates a monthly pass/fail KPI report in Excel.
 
-**[Open the interactive dashboard](https://ananyageete.github.io/order-fulfilment-plan-vs-actual/)**
+**[Open the interactive dashboard](https://ananyageete.github.io/order-fulfillment-plan-vs-actual/)**
 
 ![Project objectives](images/dashboard_project.png)
 
