@@ -1,0 +1,5 @@
+-- 07_powerbi_export.sql : export the tables the Power BI report uses (run in psql from the project folder)
+-- Fact table: one row per order line, main window only, with all plan-vs-actual flags already calculated.
+\copy (SELECT order_item_id, order_id, order_day AS order_date, order_month, order_country AS country, order_region AS region, market, shipping_mode, customer_segment, department, category, days_real, days_scheduled, slippage_days, on_time, within_tolerance, delivery_breach, ROUND(sales::numeric,2) AS sales, ROUND(discount::numeric,2) AS discount, discount_pct, discount_band, ROUND(order_item_total::numeric,2) AS amount_paid, ROUND(cost::numeric,2) AS cost, ROUND(profit::numeric,2) AS profit, ROUND(expected_margin::numeric,4) AS expected_margin, margin_breach FROM v_flags ORDER BY order_item_id) TO 'powerbi/data/fact_order_lines.csv' CSV HEADER
+
+\copy (SELECT shipping_mode, MIN(days_scheduled) AS promised_days, CASE shipping_mode WHEN 'Same Day' THEN 1 WHEN 'First Class' THEN 2 WHEN 'Second Class' THEN 3 ELSE 4 END AS sort_order FROM v_flags GROUP BY shipping_mode ORDER BY sort_order) TO 'powerbi/data/dim_shipping_mode.csv' CSV HEADER

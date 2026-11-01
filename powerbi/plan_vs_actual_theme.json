@@ -1,0 +1,44 @@
+{
+  "name": "Plan vs Actual",
+  "dataColors": [
+    "#1F5EA8",
+    "#B8750C",
+    "#C13A2D",
+    "#1A8656",
+    "#8C98A7",
+    "#5A6776",
+    "#6AA5E6",
+    "#E2A443"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#15202C",
+  "tableAccent": "#1F5EA8",
+  "good": "#1A8656",
+  "neutral": "#B8750C",
+  "bad": "#C13A2D",
+  "maximum": "#C13A2D",
+  "center": "#FBF0DC",
+  "minimum": "#E3F3EA",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 13,
+      "color": "#15202C"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#5A6776"
+    },
+    "callout": {
+      "fontFace": "Segoe UI",
+      "fontSize": 26,
+      "color": "#15202C"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#15202C"
+    }
+  }
+}

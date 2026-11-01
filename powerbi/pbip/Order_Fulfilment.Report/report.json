@@ -1,0 +1,542 @@
+{
+  "config": "{\"version\": \"5.43\", \"activeSectionIndex\": 0, \"defaultDrillFilterOtherVisuals\": true}",
+  "layoutOptimization": 0,
+  "resourcePackages": [],
+  "sections": [
+    {
+      "name": "p1",
+      "displayName": "1 Project objectives",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 24,
+          "y": 16,
+          "z": 0,
+          "width": 1232,
+          "height": 96,
+          "config": "{\"name\": \"0c18ba6254304d40abd3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 16, \"z\": 0, \"width\": 1232, \"height\": 96}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Plan vs Actual: where orders run late and profit leaks\", \"textStyle\": {\"fontSize\": \"24pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Orders are promised a delivery date and a price. How often does the business keep those promises, and what does missing them cost? DataCo public data, 164,572 order lines, Jan 2015 to Sep 2017.\", \"textStyle\": {\"fontSize\": \"12pt\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 24,
+          "y": 124,
+          "z": 0,
+          "width": 604,
+          "height": 280,
+          "config": "{\"name\": \"0d3dbfe941064ba692d3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 124, \"z\": 0, \"width\": 604, \"height\": 280}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Objective 1 \\u00b7 Plan vs actual\", \"textStyle\": {\"fontSize\": \"14pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Compare promised vs actual delivery days and expected vs actual margin by market, category and shipping mode, and flag order lines outside tolerance limits.\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Result: 42.7% on time \\u00b7 23.7% of lines more than 1 day late \\u00b7 38.5% below the margin tolerance.\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Objective 2 \\u00b7 Dashboard and cost-saving case\", \"textStyle\": {\"fontSize\": \"14pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Drill-downs and a margin bridge (list price, discount, cost, profit) showing where delays and discounting reduce profit; business case for capping discounts.\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Result: discounts $3.32M vs profit $3.53M \\u00b7 a 10% cap keeps up to $1.02M (+29% profit).\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 652,
+          "y": 124,
+          "z": 0,
+          "width": 604,
+          "height": 280,
+          "config": "{\"name\": \"7850dec5a21140809a45\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 652, \"y\": 124, \"z\": 0, \"width\": 604, \"height\": 280}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Objective 3 \\u00b7 Forecast\", \"textStyle\": {\"fontSize\": \"14pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Forecast monthly orders and the late-delivery rate and test accuracy on held-back months.\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Result: orders within 0.9% error, late rate within 1.3% \\u00b7 next quarter about 57.8% late.\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Objective 4 \\u00b7 One-click monthly report\", \"textStyle\": {\"fontSize\": \"14pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Excel VBA report that checks each KPI against its target and produces a pass/fail summary.\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Result: 6 KPIs checked every month \\u00b7 Sep 2017 passed 1 of 6.\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 24,
+          "y": 420,
+          "z": 0,
+          "width": 300,
+          "height": 120,
+          "config": "{\"name\": \"6a3cdd20302c4035aae7\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 420, \"z\": 0, \"width\": 300, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Order Lines\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Order Lines\"}, \"Name\": \"fact_order_lines.Order Lines\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Order lines'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 340,
+          "y": 420,
+          "z": 0,
+          "width": 300,
+          "height": 120,
+          "config": "{\"name\": \"5655624b128a4d6f870f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 340, \"y\": 420, \"z\": 0, \"width\": 300, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.On-time %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"On-time %\"}, \"Name\": \"fact_order_lines.On-time %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'On-time delivery'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 656,
+          "y": 420,
+          "z": 0,
+          "width": 300,
+          "height": 120,
+          "config": "{\"name\": \"8a2172dd14f54e0f8531\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 656, \"y\": 420, \"z\": 0, \"width\": 300, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Margin %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Margin %\"}, \"Name\": \"fact_order_lines.Margin %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Profit margin'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 972,
+          "y": 420,
+          "z": 0,
+          "width": 284,
+          "height": 120,
+          "config": "{\"name\": \"fb04b73756994e16a1ff\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 972, \"y\": 420, \"z\": 0, \"width\": 284, \"height\": 120}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Discount vs Profit\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Discount vs Profit\"}, \"Name\": \"fact_order_lines.Discount vs Profit\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Discount given vs profit'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 24,
+          "y": 560,
+          "z": 0,
+          "width": 1232,
+          "height": 140,
+          "config": "{\"name\": \"06bb90eef4e847419991\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 560, \"z\": 0, \"width\": 1232, \"height\": 140}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Pages: 2 Overview \\u00b7 3 Delivery \\u00b7 4 Profit and discount case \\u00b7 5 Forecast \\u00b7 6 Monthly KPI report \\u00b7 7 Method\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Tools: PostgreSQL (SQL), Power BI (DAX), Python, Excel VBA. Data: Constante, Silva and Pereira (2019), DataCo Smart Supply Chain, Mendeley Data V5.\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "ordinal": 0
+    },
+    {
+      "name": "p2",
+      "displayName": "2 Overview",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 8,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"b2c798633d2a4ad68df4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"Date.Year\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t1\", \"Entity\": \"Date\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Year\"}, \"Name\": \"Date.Year\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 218,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"35e3ed63f86749d4910a\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 218, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.market\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"market\"}, \"Name\": \"fact_order_lines.market\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 428,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"7aafcc7f69464d7bbaa9\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 428, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_shipping_mode.shipping_mode\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t2\", \"Entity\": \"dim_shipping_mode\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t2\"}}, \"Property\": \"shipping_mode\"}, \"Name\": \"dim_shipping_mode.shipping_mode\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 638,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"fa6dd9a9dfb449309b67\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 638, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.customer_segment\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"customer_segment\"}, \"Name\": \"fact_order_lines.customer_segment\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 76,
+          "z": 0,
+          "width": 205,
+          "height": 100,
+          "config": "{\"name\": \"66856b59152b47c6b37d\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 76, \"z\": 0, \"width\": 205, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Order Lines\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Order Lines\"}, \"Name\": \"fact_order_lines.Order Lines\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Order lines'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 221,
+          "y": 76,
+          "z": 0,
+          "width": 205,
+          "height": 100,
+          "config": "{\"name\": \"825fa16764184b46a1e6\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 221, \"y\": 76, \"z\": 0, \"width\": 205, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.On-time %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"On-time %\"}, \"Name\": \"fact_order_lines.On-time %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'On-time delivery (target 45%)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 434,
+          "y": 76,
+          "z": 0,
+          "width": 205,
+          "height": 100,
+          "config": "{\"name\": \"93adeacb07d744b59985\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 434, \"y\": 76, \"z\": 0, \"width\": 205, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Within Tolerance %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Within Tolerance %\"}, \"Name\": \"fact_order_lines.Within Tolerance %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Within 1-day tolerance (target 80%)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 647,
+          "y": 76,
+          "z": 0,
+          "width": 205,
+          "height": 100,
+          "config": "{\"name\": \"40667722f46c47c787e2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 647, \"y\": 76, \"z\": 0, \"width\": 205, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Avg Slippage\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Avg Slippage\"}, \"Name\": \"fact_order_lines.Avg Slippage\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Avg slippage, days (target 0.50)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 860,
+          "y": 76,
+          "z": 0,
+          "width": 205,
+          "height": 100,
+          "config": "{\"name\": \"7501816ec8f74ac685db\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860, \"y\": 76, \"z\": 0, \"width\": 205, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Margin %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Margin %\"}, \"Name\": \"fact_order_lines.Margin %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Profit margin (target 12%)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1073,
+          "y": 76,
+          "z": 0,
+          "width": 199,
+          "height": 100,
+          "config": "{\"name\": \"37f724bf39024a7ba251\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1073, \"y\": 76, \"z\": 0, \"width\": 199, \"height\": 100}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Discount vs Profit\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Discount vs Profit\"}, \"Name\": \"fact_order_lines.Discount vs Profit\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Discount vs profit'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 188,
+          "z": 0,
+          "width": 628,
+          "height": 250,
+          "config": "{\"name\": \"b92e10740cca49718479\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 188, \"z\": 0, \"width\": 628, \"height\": 250}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"Date.Month\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.On-time %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t1\", \"Entity\": \"Date\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Month\"}, \"Name\": \"Date.Month\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"On-time %\"}, \"Name\": \"fact_order_lines.On-time %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'On-time delivery by month'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 644,
+          "y": 188,
+          "z": 0,
+          "width": 628,
+          "height": 250,
+          "config": "{\"name\": \"b5e002053be3452d82e3\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 644, \"y\": 188, \"z\": 0, \"width\": 628, \"height\": 250}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"Date.Month\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.Margin %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t1\", \"Entity\": \"Date\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Month\"}, \"Name\": \"Date.Month\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Margin %\"}, \"Name\": \"fact_order_lines.Margin %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Profit margin by month'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 448,
+          "z": 0,
+          "width": 1264,
+          "height": 264,
+          "config": "{\"name\": \"0787c9809fa54c25a9c0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 448, \"z\": 0, \"width\": 1264, \"height\": 264}}], \"singleVisual\": {\"visualType\": \"hundredPercentStackedBarChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_shipping_mode.shipping_mode\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.On-time %\"}, {\"queryRef\": \"fact_order_lines.One Day Late %\"}, {\"queryRef\": \"fact_order_lines.Breach %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t2\", \"Entity\": \"dim_shipping_mode\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t2\"}}, \"Property\": \"shipping_mode\"}, \"Name\": \"dim_shipping_mode.shipping_mode\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"On-time %\"}, \"Name\": \"fact_order_lines.On-time %\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"One Day Late %\"}, \"Name\": \"fact_order_lines.One Day Late %\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Breach %\"}, \"Name\": \"fact_order_lines.Breach %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Delivery against the promise by shipping mode: on time, 1 day late, 2+ days late'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "ordinal": 1
+    },
+    {
+      "name": "p3",
+      "displayName": "3 Delivery",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 8,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"a58e1448f7b34fe68138\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"Date.Year\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t1\", \"Entity\": \"Date\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Year\"}, \"Name\": \"Date.Year\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 218,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"5b2fb096e0574cdaaa32\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 218, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.market\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"market\"}, \"Name\": \"fact_order_lines.market\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 428,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"916dfffc03d54876a833\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 428, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_shipping_mode.shipping_mode\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t2\", \"Entity\": \"dim_shipping_mode\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t2\"}}, \"Property\": \"shipping_mode\"}, \"Name\": \"dim_shipping_mode.shipping_mode\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 638,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"873eeb9406d144c2a803\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 638, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.customer_segment\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"customer_segment\"}, \"Name\": \"fact_order_lines.customer_segment\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 860,
+          "y": 8,
+          "z": 0,
+          "width": 412,
+          "height": 56,
+          "config": "{\"name\": \"f370807939344ab4b2cb\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860, \"y\": 8, \"z\": 0, \"width\": 412, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Title Delivery\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Title Delivery\"}, \"Name\": \"fact_order_lines.Title Delivery\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 76,
+          "z": 0,
+          "width": 628,
+          "height": 300,
+          "config": "{\"name\": \"32641aa653684ec9a5cc\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 76, \"z\": 0, \"width\": 628, \"height\": 300}}], \"singleVisual\": {\"visualType\": \"clusteredBarChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_shipping_mode.shipping_mode\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.Avg Promised Days\"}, {\"queryRef\": \"fact_order_lines.Avg Actual Days\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t2\", \"Entity\": \"dim_shipping_mode\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t2\"}}, \"Property\": \"shipping_mode\"}, \"Name\": \"dim_shipping_mode.shipping_mode\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Avg Promised Days\"}, \"Name\": \"fact_order_lines.Avg Promised Days\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Avg Actual Days\"}, \"Name\": \"fact_order_lines.Avg Actual Days\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Promised vs actual delivery days'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 644,
+          "y": 76,
+          "z": 0,
+          "width": 628,
+          "height": 300,
+          "config": "{\"name\": \"60dad287de0e4ff38a40\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 644, \"y\": 76, \"z\": 0, \"width\": 628, \"height\": 300}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"fact_order_lines.slippage_days\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.Order Lines\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"slippage_days\"}, \"Name\": \"fact_order_lines.slippage_days\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Order Lines\"}, \"Name\": \"fact_order_lines.Order Lines\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'How late? Order lines by slippage (actual minus promised days)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 388,
+          "z": 0,
+          "width": 1264,
+          "height": 324,
+          "config": "{\"name\": \"296cb9f14fa445e0a297\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 388, \"z\": 0, \"width\": 1264, \"height\": 324}}], \"singleVisual\": {\"visualType\": \"pivotTable\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Rows\": [{\"queryRef\": \"fact_order_lines.market\"}, {\"queryRef\": \"fact_order_lines.region\"}, {\"queryRef\": \"fact_order_lines.country\"}], \"Columns\": [{\"queryRef\": \"dim_shipping_mode.shipping_mode\"}], \"Values\": [{\"queryRef\": \"fact_order_lines.Breach %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}, {\"Name\": \"t2\", \"Entity\": \"dim_shipping_mode\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"market\"}, \"Name\": \"fact_order_lines.market\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"region\"}, \"Name\": \"fact_order_lines.region\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"country\"}, \"Name\": \"fact_order_lines.country\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t2\"}}, \"Property\": \"shipping_mode\"}, \"Name\": \"dim_shipping_mode.shipping_mode\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Breach %\"}, \"Name\": \"fact_order_lines.Breach %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Tolerance breaches (% more than 1 day late): expand market > region > country'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "ordinal": 2
+    },
+    {
+      "name": "p4",
+      "displayName": "4 Profit",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 8,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"74ac6c9fcb0648ed9170\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"Date.Year\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t1\", \"Entity\": \"Date\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Year\"}, \"Name\": \"Date.Year\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 218,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"7d7c5bc1b8244a82991c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 218, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.market\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"market\"}, \"Name\": \"fact_order_lines.market\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 428,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"5584ac8ea24e4491b894\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 428, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"dim_shipping_mode.shipping_mode\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t2\", \"Entity\": \"dim_shipping_mode\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t2\"}}, \"Property\": \"shipping_mode\"}, \"Name\": \"dim_shipping_mode.shipping_mode\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 638,
+          "y": 8,
+          "z": 0,
+          "width": 200,
+          "height": 56,
+          "config": "{\"name\": \"6fae658f5b1c4752a22c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 638, \"y\": 8, \"z\": 0, \"width\": 200, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.customer_segment\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"customer_segment\"}, \"Name\": \"fact_order_lines.customer_segment\"}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 860,
+          "y": 8,
+          "z": 0,
+          "width": 412,
+          "height": 56,
+          "config": "{\"name\": \"c6d3ebf253eb4cf58ad0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 860, \"y\": 8, \"z\": 0, \"width\": 412, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Title Profit\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Title Profit\"}, \"Name\": \"fact_order_lines.Title Profit\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 76,
+          "z": 0,
+          "width": 628,
+          "height": 330,
+          "config": "{\"name\": \"79bd1dde373f41bf9df8\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 76, \"z\": 0, \"width\": 628, \"height\": 330}}], \"singleVisual\": {\"visualType\": \"waterfallChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"bridge_steps.step\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.Bridge Value\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t3\", \"Entity\": \"bridge_steps\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t3\"}}, \"Property\": \"step\"}, \"Name\": \"bridge_steps.step\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Bridge Value\"}, \"Name\": \"fact_order_lines.Bridge Value\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Margin bridge: gross sales to profit'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 644,
+          "y": 76,
+          "z": 0,
+          "width": 300,
+          "height": 80,
+          "config": "{\"name\": \"7bd9cd7c17304c55aaa6\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 644, \"y\": 76, \"z\": 0, \"width\": 300, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"Discount Cap.Discount Cap\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t4\", \"Entity\": \"Discount Cap\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t4\"}}, \"Property\": \"Discount Cap\"}, \"Name\": \"Discount Cap.Discount Cap\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Discount cap'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 952,
+          "y": 76,
+          "z": 0,
+          "width": 320,
+          "height": 80,
+          "config": "{\"name\": \"a869024021b54c7f9684\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 952, \"y\": 76, \"z\": 0, \"width\": 320, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Cap Saving\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Cap Saving\"}, \"Name\": \"fact_order_lines.Cap Saving\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Discount kept at this cap'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 644,
+          "y": 166,
+          "z": 0,
+          "width": 300,
+          "height": 80,
+          "config": "{\"name\": \"d380c1337c95480793e6\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 644, \"y\": 166, \"z\": 0, \"width\": 300, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Profit Uplift %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Profit Uplift %\"}, \"Name\": \"fact_order_lines.Profit Uplift %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Profit uplift (upper bound)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 952,
+          "y": 166,
+          "z": 0,
+          "width": 320,
+          "height": 80,
+          "config": "{\"name\": \"90d1ed9d88d64719bb04\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 952, \"y\": 166, \"z\": 0, \"width\": 320, \"height\": 80}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.Lines Affected %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Lines Affected %\"}, \"Name\": \"fact_order_lines.Lines Affected %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Order lines affected'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 644,
+          "y": 256,
+          "z": 0,
+          "width": 628,
+          "height": 150,
+          "config": "{\"name\": \"cd003f9495224c82b39a\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 644, \"y\": 256, \"z\": 0, \"width\": 628, \"height\": 150}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"dim_discount_band.discount_band\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.Margin %\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t5\", \"Entity\": \"dim_discount_band\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t5\"}}, \"Property\": \"discount_band\"}, \"Name\": \"dim_discount_band.discount_band\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Margin %\"}, \"Name\": \"fact_order_lines.Margin %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Margin % by discount band'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 416,
+          "z": 0,
+          "width": 1264,
+          "height": 296,
+          "config": "{\"name\": \"c0d995bd88614ceabf08\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 416, \"z\": 0, \"width\": 1264, \"height\": 296}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.category\"}, {\"queryRef\": \"fact_order_lines.Amount Paid\"}, {\"queryRef\": \"fact_order_lines.Expected Margin %\"}, {\"queryRef\": \"fact_order_lines.Margin %\"}, {\"queryRef\": \"fact_order_lines.Margin Gap (pts)\"}, {\"queryRef\": \"fact_order_lines.Margin Breach %\"}, {\"queryRef\": \"fact_order_lines.Loss Amount\"}, {\"queryRef\": \"fact_order_lines.Cap Saving\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"category\"}, \"Name\": \"fact_order_lines.category\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Amount Paid\"}, \"Name\": \"fact_order_lines.Amount Paid\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Expected Margin %\"}, \"Name\": \"fact_order_lines.Expected Margin %\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Margin %\"}, \"Name\": \"fact_order_lines.Margin %\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Margin Gap (pts)\"}, \"Name\": \"fact_order_lines.Margin Gap (pts)\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Margin Breach %\"}, \"Name\": \"fact_order_lines.Margin Breach %\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Loss Amount\"}, \"Name\": \"fact_order_lines.Loss Amount\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Cap Saving\"}, \"Name\": \"fact_order_lines.Cap Saving\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Expected vs actual margin by category'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "ordinal": 3
+    },
+    {
+      "name": "p5",
+      "displayName": "5 Forecast",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 8,
+          "y": 8,
+          "z": 0,
+          "width": 628,
+          "height": 420,
+          "config": "{\"name\": \"7ea2fed9be7e4bbd8c64\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 8, \"z\": 0, \"width\": 628, \"height\": 420}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"forecast.month\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.Orders Actual\"}, {\"queryRef\": \"fact_order_lines.Orders Test\"}, {\"queryRef\": \"fact_order_lines.Orders Forecast\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t6\", \"Entity\": \"forecast\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t6\"}}, \"Property\": \"month\"}, \"Name\": \"forecast.month\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Orders Actual\"}, \"Name\": \"fact_order_lines.Orders Actual\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Orders Test\"}, \"Name\": \"fact_order_lines.Orders Test\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Orders Forecast\"}, \"Name\": \"fact_order_lines.Orders Forecast\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Orders per month: actual, Holt-Winters on held-back months, forecast'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 644,
+          "y": 8,
+          "z": 0,
+          "width": 628,
+          "height": 420,
+          "config": "{\"name\": \"f4862ac444dd4a6fa645\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 644, \"y\": 8, \"z\": 0, \"width\": 628, \"height\": 420}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Category\": [{\"queryRef\": \"forecast.month\"}], \"Y\": [{\"queryRef\": \"fact_order_lines.Late Rate Actual\"}, {\"queryRef\": \"fact_order_lines.Late Rate Test\"}, {\"queryRef\": \"fact_order_lines.Late Rate Forecast\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t6\", \"Entity\": \"forecast\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t6\"}}, \"Property\": \"month\"}, \"Name\": \"forecast.month\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Late Rate Actual\"}, \"Name\": \"fact_order_lines.Late Rate Actual\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Late Rate Test\"}, \"Name\": \"fact_order_lines.Late Rate Test\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"Late Rate Forecast\"}, \"Name\": \"fact_order_lines.Late Rate Forecast\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Late-delivery rate: actual, 3-month average on held-back months, forecast'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 440,
+          "z": 0,
+          "width": 628,
+          "height": 200,
+          "config": "{\"name\": \"25ba1df56820496099ca\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 440, \"z\": 0, \"width\": 628, \"height\": 200}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"forecast_error.model\"}, {\"queryRef\": \"forecast_error.orders_mape_pct\"}, {\"queryRef\": \"forecast_error.late_rate_mape_pct\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t7\", \"Entity\": \"forecast_error\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t7\"}}, \"Property\": \"model\"}, \"Name\": \"forecast_error.model\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t7\"}}, \"Property\": \"orders_mape_pct\"}, \"Name\": \"forecast_error.orders_mape_pct\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t7\"}}, \"Property\": \"late_rate_mape_pct\"}, \"Name\": \"forecast_error.late_rate_mape_pct\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Forecast error (MAPE %) on Apr to Sep 2017'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 644,
+          "y": 440,
+          "z": 0,
+          "width": 628,
+          "height": 200,
+          "config": "{\"name\": \"42a3cec5cf7343569c1e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 644, \"y\": 440, \"z\": 0, \"width\": 628, \"height\": 200}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Trained on Jan 2015 to Mar 2017 and tested on 6 held-back months. Best models: Holt-Winters for orders (0.9% error) and a 3-month average for the late rate (1.3%).\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Without a process change, about 57.8% of lines will keep arriving later than promised in Oct to Dec 2017.\", \"textStyle\": {\"fontSize\": \"11pt\", \"fontWeight\": \"bold\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "ordinal": 4
+    },
+    {
+      "name": "p6",
+      "displayName": "6 Monthly KPI report",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 8,
+          "y": 8,
+          "z": 0,
+          "width": 300,
+          "height": 56,
+          "config": "{\"name\": \"b5dfee123457482db074\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 8, \"z\": 0, \"width\": 300, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"slicer\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"Date.Month\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t1\", \"Entity\": \"Date\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Month\"}, \"Name\": \"Date.Month\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Month'\"}}}}}]}, \"objects\": {\"data\": [{\"properties\": {\"mode\": {\"expr\": {\"Literal\": {\"Value\": \"'Dropdown'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 320,
+          "y": 8,
+          "z": 0,
+          "width": 300,
+          "height": 56,
+          "config": "{\"name\": \"5dec50783ce94b6993a4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 320, \"y\": 8, \"z\": 0, \"width\": 300, \"height\": 56}}], \"singleVisual\": {\"visualType\": \"card\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"fact_order_lines.KPIs Passed\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"KPIs Passed\"}, \"Name\": \"fact_order_lines.KPIs Passed\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'KPIs passed (of 6)'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 76,
+          "z": 0,
+          "width": 1264,
+          "height": 240,
+          "config": "{\"name\": \"5eba7e2f099c4c27987a\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 76, \"z\": 0, \"width\": 1264, \"height\": 240}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Values\": [{\"queryRef\": \"kpi_targets.kpi\"}, {\"queryRef\": \"kpi_targets.rule\"}, {\"queryRef\": \"fact_order_lines.KPI Target\"}, {\"queryRef\": \"fact_order_lines.KPI Actual\"}, {\"queryRef\": \"fact_order_lines.KPI Status\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t8\", \"Entity\": \"kpi_targets\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t8\"}}, \"Property\": \"kpi\"}, \"Name\": \"kpi_targets.kpi\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t8\"}}, \"Property\": \"rule\"}, \"Name\": \"kpi_targets.rule\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"KPI Target\"}, \"Name\": \"fact_order_lines.KPI Target\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"KPI Actual\"}, \"Name\": \"fact_order_lines.KPI Actual\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"KPI Status\"}, \"Name\": \"fact_order_lines.KPI Status\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'KPI vs target for the selected month'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 8,
+          "y": 328,
+          "z": 0,
+          "width": 1264,
+          "height": 384,
+          "config": "{\"name\": \"37216ff511d849818534\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 8, \"y\": 328, \"z\": 0, \"width\": 1264, \"height\": 384}}], \"singleVisual\": {\"visualType\": \"pivotTable\", \"drillFilterOtherVisuals\": true, \"projections\": {\"Rows\": [{\"queryRef\": \"kpi_targets.kpi\"}], \"Columns\": [{\"queryRef\": \"Date.Month\"}], \"Values\": [{\"queryRef\": \"fact_order_lines.KPI Pass\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t8\", \"Entity\": \"kpi_targets\", \"Type\": 0}, {\"Name\": \"t1\", \"Entity\": \"Date\", \"Type\": 0}, {\"Name\": \"t0\", \"Entity\": \"fact_order_lines\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t8\"}}, \"Property\": \"kpi\"}, \"Name\": \"kpi_targets.kpi\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t1\"}}, \"Property\": \"Month\"}, \"Name\": \"Date.Month\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t0\"}}, \"Property\": \"KPI Pass\"}, \"Name\": \"fact_order_lines.KPI Pass\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Pass (1) / fail (0) by month: add icons in conditional formatting'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "ordinal": 5
+    },
+    {
+      "name": "p7",
+      "displayName": "7 Method",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": [
+        {
+          "x": 24,
+          "y": 16,
+          "z": 0,
+          "width": 1232,
+          "height": 680,
+          "config": "{\"name\": \"df43265ed4164f78a3aa\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 24, \"y\": 16, \"z\": 0, \"width\": 1232, \"height\": 680}}], \"singleVisual\": {\"visualType\": \"textbox\", \"drillFilterOtherVisuals\": true, \"objects\": {\"general\": [{\"properties\": {\"paragraphs\": [{\"textRuns\": [{\"value\": \"Method\", \"textStyle\": {\"fontSize\": \"18pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"1 Load: Python keeps 24 business columns of the public CSV and drops all customer personal data. 2 Clean: a PostgreSQL view removes 7,754 cancelled and suspected-fraud lines and adds slippage, on-time and tolerance flags. 3 Compare: promised vs actual days (tolerance 1 day) and actual vs category median margin (tolerance 10 points). 4 Business case: discount kept under 5%, 10% and 15% caps. 5 Forecast: four models tested on 6 held-back months. 6 Report: Excel VBA macro checks 6 KPIs against targets.\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Data checks\", \"textStyle\": {\"fontSize\": \"14pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Sales = unit price \\u00d7 quantity and amount paid = sales \\u2212 discount on every line. No missing values or duplicate line ids. From Oct 2017 the data changes shape (about 1 line per order instead of 3), so 8,193 lines are excluded.\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Limitations\", \"textStyle\": {\"fontSize\": \"14pt\", \"fontWeight\": \"bold\"}}]}, {\"textRuns\": [{\"value\": \"Patterns are nearly identical across markets, which suggests the public dataset is partly simulated. The discount-cap saving is an upper bound. Expected margin is a historical median, not a budget; KPI targets were set for this study.\", \"textStyle\": {\"fontSize\": \"11pt\"}}]}, {\"textRuns\": [{\"value\": \"Source: Constante, F., Silva, F. and Pereira, A. (2019). DataCo Smart Supply Chain for Big Data Analysis. Mendeley Data, V5. doi:10.17632/8gx2fvg2k6.5\", \"textStyle\": {\"fontSize\": \"10pt\"}}]}]}}]}}}",
+          "filters": "[]"
+        }
+      ],
+      "ordinal": 6
+    }
+  ],
+  "filters": "[]"
+}

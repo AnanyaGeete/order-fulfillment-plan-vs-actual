@@ -1,0 +1,5 @@
+shipping_mode,promised_days,sort_order
+Same Day,0,1
+First Class,1,2
+Second Class,2,3
+Standard Class,4,4

@@ -1,0 +1,828 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "fact_order_lines",
+        "columns": [
+          {
+            "name": "order_item_id",
+            "dataType": "int64",
+            "sourceColumn": "order_item_id",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "order_id",
+            "dataType": "int64",
+            "sourceColumn": "order_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "order_date",
+            "dataType": "dateTime",
+            "sourceColumn": "order_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "order_month",
+            "dataType": "dateTime",
+            "sourceColumn": "order_month",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "country",
+            "dataType": "string",
+            "sourceColumn": "country",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "region",
+            "dataType": "string",
+            "sourceColumn": "region",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "market",
+            "dataType": "string",
+            "sourceColumn": "market",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "shipping_mode",
+            "dataType": "string",
+            "sourceColumn": "shipping_mode",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "customer_segment",
+            "dataType": "string",
+            "sourceColumn": "customer_segment",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "department",
+            "dataType": "string",
+            "sourceColumn": "department",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "category",
+            "dataType": "string",
+            "sourceColumn": "category",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "days_real",
+            "dataType": "int64",
+            "sourceColumn": "days_real",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "days_scheduled",
+            "dataType": "int64",
+            "sourceColumn": "days_scheduled",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "slippage_days",
+            "dataType": "int64",
+            "sourceColumn": "slippage_days",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "on_time",
+            "dataType": "int64",
+            "sourceColumn": "on_time",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "within_tolerance",
+            "dataType": "int64",
+            "sourceColumn": "within_tolerance",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "delivery_breach",
+            "dataType": "int64",
+            "sourceColumn": "delivery_breach",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "sales",
+            "dataType": "double",
+            "sourceColumn": "sales",
+            "summarizeBy": "sum",
+            "formatString": "\\$#,0"
+          },
+          {
+            "name": "discount",
+            "dataType": "double",
+            "sourceColumn": "discount",
+            "summarizeBy": "sum",
+            "formatString": "\\$#,0"
+          },
+          {
+            "name": "discount_pct",
+            "dataType": "double",
+            "sourceColumn": "discount_pct",
+            "summarizeBy": "none",
+            "formatString": "0%"
+          },
+          {
+            "name": "discount_band",
+            "dataType": "string",
+            "sourceColumn": "discount_band",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "amount_paid",
+            "dataType": "double",
+            "sourceColumn": "amount_paid",
+            "summarizeBy": "sum",
+            "formatString": "\\$#,0"
+          },
+          {
+            "name": "cost",
+            "dataType": "double",
+            "sourceColumn": "cost",
+            "summarizeBy": "sum",
+            "formatString": "\\$#,0"
+          },
+          {
+            "name": "profit",
+            "dataType": "double",
+            "sourceColumn": "profit",
+            "summarizeBy": "sum",
+            "formatString": "\\$#,0"
+          },
+          {
+            "name": "expected_margin",
+            "dataType": "double",
+            "sourceColumn": "expected_margin",
+            "summarizeBy": "none",
+            "formatString": "0.0%",
+            "isHidden": true
+          },
+          {
+            "name": "margin_breach",
+            "dataType": "int64",
+            "sourceColumn": "margin_breach",
+            "summarizeBy": "sum"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_order_lines",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"fact_order_lines.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"order_item_id\", Int64.Type}, {\"order_id\", Int64.Type}, {\"order_date\", type date}, {\"order_month\", type date}, {\"country\", type text}, {\"region\", type text}, {\"market\", type text}, {\"shipping_mode\", type text}, {\"customer_segment\", type text}, {\"department\", type text}, {\"category\", type text}, {\"days_real\", Int64.Type}, {\"days_scheduled\", Int64.Type}, {\"slippage_days\", Int64.Type}, {\"on_time\", Int64.Type}, {\"within_tolerance\", Int64.Type}, {\"delivery_breach\", Int64.Type}, {\"sales\", type number}, {\"discount\", type number}, {\"discount_pct\", type number}, {\"discount_band\", type text}, {\"amount_paid\", type number}, {\"cost\", type number}, {\"profit\", type number}, {\"expected_margin\", type number}, {\"margin_breach\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Order Lines",
+            "expression": "COUNTROWS ( fact_order_lines )",
+            "formatString": "#,0",
+            "displayFolder": "Volume"
+          },
+          {
+            "name": "Orders",
+            "expression": "DISTINCTCOUNT ( fact_order_lines[order_id] )",
+            "formatString": "#,0",
+            "displayFolder": "Volume"
+          },
+          {
+            "name": "Avg Promised Days",
+            "expression": "AVERAGE ( fact_order_lines[days_scheduled] )",
+            "formatString": "0.00",
+            "displayFolder": "Delivery"
+          },
+          {
+            "name": "Avg Actual Days",
+            "expression": "AVERAGE ( fact_order_lines[days_real] )",
+            "formatString": "0.00",
+            "displayFolder": "Delivery"
+          },
+          {
+            "name": "Avg Slippage",
+            "expression": "AVERAGE ( fact_order_lines[slippage_days] )",
+            "formatString": "0.00",
+            "displayFolder": "Delivery"
+          },
+          {
+            "name": "On-time %",
+            "expression": "DIVIDE ( SUM ( fact_order_lines[on_time] ), [Order Lines] )",
+            "formatString": "0.0%",
+            "displayFolder": "Delivery"
+          },
+          {
+            "name": "Within Tolerance %",
+            "expression": "DIVIDE ( SUM ( fact_order_lines[within_tolerance] ), [Order Lines] )",
+            "formatString": "0.0%",
+            "displayFolder": "Delivery"
+          },
+          {
+            "name": "One Day Late %",
+            "expression": "[Within Tolerance %] - [On-time %]",
+            "formatString": "0.0%",
+            "displayFolder": "Delivery"
+          },
+          {
+            "name": "Breach %",
+            "expression": "DIVIDE ( SUM ( fact_order_lines[delivery_breach] ), [Order Lines] )",
+            "formatString": "0.0%",
+            "displayFolder": "Delivery"
+          },
+          {
+            "name": "Gross Sales",
+            "expression": "SUM ( fact_order_lines[sales] )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Discount",
+            "expression": "SUM ( fact_order_lines[discount] )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Amount Paid",
+            "expression": "SUM ( fact_order_lines[amount_paid] )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Cost",
+            "expression": "SUM ( fact_order_lines[cost] )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Profit",
+            "expression": "SUM ( fact_order_lines[profit] )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Margin %",
+            "expression": "DIVIDE ( [Profit], [Amount Paid] )",
+            "formatString": "0.0%",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Discount % of Sales",
+            "expression": "DIVIDE ( [Discount], [Gross Sales] )",
+            "formatString": "0.0%",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Discount vs Profit",
+            "expression": "DIVIDE ( [Discount], [Profit] )",
+            "formatString": "0%",
+            "displayFolder": "Money"
+          },
+          {
+            "name": "Expected Margin %",
+            "expression": "AVERAGE ( fact_order_lines[expected_margin] )",
+            "formatString": "0.0%",
+            "displayFolder": "Margin"
+          },
+          {
+            "name": "Margin Gap (pts)",
+            "expression": "( [Margin %] - [Expected Margin %] ) * 100",
+            "formatString": "0.0",
+            "displayFolder": "Margin"
+          },
+          {
+            "name": "Margin Breach %",
+            "expression": "DIVIDE ( SUM ( fact_order_lines[margin_breach] ), [Order Lines] )",
+            "formatString": "0.0%",
+            "displayFolder": "Margin"
+          },
+          {
+            "name": "Loss Lines %",
+            "expression": "DIVIDE ( CALCULATE ( [Order Lines], fact_order_lines[profit] < 0 ), [Order Lines] )",
+            "formatString": "0.0%",
+            "displayFolder": "Margin"
+          },
+          {
+            "name": "Loss Amount",
+            "expression": "CALCULATE ( [Profit], fact_order_lines[profit] < 0 )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Margin"
+          },
+          {
+            "name": "Profit on Profitable Lines",
+            "expression": "CALCULATE ( [Profit], fact_order_lines[profit] >= 0 )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Margin"
+          },
+          {
+            "name": "Bridge Value",
+            "expression": "SWITCH ( SELECTEDVALUE ( bridge_steps[step] ), \"Gross sales\", [Gross Sales], \"Discount\", - [Discount], \"Cost\", - [Cost] )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Margin"
+          },
+          {
+            "name": "Discount Cap Value",
+            "expression": "SELECTEDVALUE ( 'Discount Cap'[Discount Cap], 0.10 )",
+            "formatString": "0%",
+            "displayFolder": "Discount cap"
+          },
+          {
+            "name": "Cap Saving",
+            "expression": "SUMX ( fact_order_lines, MAX ( 0, fact_order_lines[discount] - [Discount Cap Value] * fact_order_lines[sales] ) )",
+            "formatString": "\\$#,0",
+            "displayFolder": "Discount cap"
+          },
+          {
+            "name": "Profit Uplift %",
+            "expression": "DIVIDE ( [Cap Saving], [Profit] )",
+            "formatString": "0%",
+            "displayFolder": "Discount cap"
+          },
+          {
+            "name": "Lines Affected %",
+            "expression": "VAR cap = [Discount Cap Value] RETURN DIVIDE ( CALCULATE ( [Order Lines], fact_order_lines[discount_pct] > cap ), [Order Lines] )",
+            "formatString": "0%",
+            "displayFolder": "Discount cap"
+          },
+          {
+            "name": "KPI Actual",
+            "expression": "SWITCH ( SELECTEDVALUE ( kpi_targets[kpi] ), \"On-time delivery\", [On-time %], \"Within 1-day tolerance\", [Within Tolerance %], \"Average slippage (days)\", [Avg Slippage], \"Profit margin\", [Margin %], \"Discount as % of gross sales\", [Discount % of Sales], \"Loss-making order lines\", [Loss Lines %] )",
+            "formatString": "0.000",
+            "displayFolder": "KPI check"
+          },
+          {
+            "name": "KPI Target",
+            "expression": "SELECTEDVALUE ( kpi_targets[target] )",
+            "formatString": "0.000",
+            "displayFolder": "KPI check"
+          },
+          {
+            "name": "KPI Pass",
+            "expression": "VAR a = ROUND ( [KPI Actual], 3 ) VAR t = [KPI Target] RETURN IF ( ISBLANK ( a ), BLANK (), IF ( SELECTEDVALUE ( kpi_targets[rule] ) = \">=\", IF ( a >= t, 1, 0 ), IF ( a <= t, 1, 0 ) ) )",
+            "formatString": "0",
+            "displayFolder": "KPI check"
+          },
+          {
+            "name": "KPI Status",
+            "expression": "SWITCH ( [KPI Pass], 1, \"PASS\", 0, \"FAIL\", BLANK () )",
+            "displayFolder": "KPI check"
+          },
+          {
+            "name": "KPIs Passed",
+            "expression": "SUMX ( VALUES ( kpi_targets[kpi] ), [KPI Pass] )",
+            "formatString": "0",
+            "displayFolder": "KPI check"
+          },
+          {
+            "name": "Orders Actual",
+            "expression": "CALCULATE ( SUM ( forecast[actual] ), forecast[series] = \"Orders\" )",
+            "formatString": "#,0",
+            "displayFolder": "Forecast"
+          },
+          {
+            "name": "Orders Test",
+            "expression": "CALCULATE ( SUM ( forecast[test_prediction] ), forecast[series] = \"Orders\" )",
+            "formatString": "#,0",
+            "displayFolder": "Forecast"
+          },
+          {
+            "name": "Orders Forecast",
+            "expression": "CALCULATE ( SUM ( forecast[forecast] ), forecast[series] = \"Orders\" )",
+            "formatString": "#,0",
+            "displayFolder": "Forecast"
+          },
+          {
+            "name": "Late Rate Actual",
+            "expression": "CALCULATE ( SUM ( forecast[actual] ), forecast[series] = \"Late-delivery rate\" )",
+            "formatString": "0.0%",
+            "displayFolder": "Forecast"
+          },
+          {
+            "name": "Late Rate Test",
+            "expression": "CALCULATE ( SUM ( forecast[test_prediction] ), forecast[series] = \"Late-delivery rate\" )",
+            "formatString": "0.0%",
+            "displayFolder": "Forecast"
+          },
+          {
+            "name": "Late Rate Forecast",
+            "expression": "CALCULATE ( SUM ( forecast[forecast] ), forecast[series] = \"Late-delivery rate\" )",
+            "formatString": "0.0%",
+            "displayFolder": "Forecast"
+          },
+          {
+            "name": "Title Delivery",
+            "expression": "\"Only \" & FORMAT ( [On-time %], \"0.0%\" ) & \" of order lines arrive within the promised days\"",
+            "displayFolder": "Titles"
+          },
+          {
+            "name": "Title Profit",
+            "expression": "\"Discounts of $\" & FORMAT ( [Discount] / 1000000, \"0.00\" ) & \"M against profit of $\" & FORMAT ( [Profit] / 1000000, \"0.00\" ) & \"M\"",
+            "displayFolder": "Titles"
+          }
+        ]
+      },
+      {
+        "name": "Date",
+        "dataCategory": "Time",
+        "columns": [
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "sourceColumn": "Date",
+            "isKey": true,
+            "formatString": "dd mmm yyyy",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "MonthNo",
+            "dataType": "int64",
+            "sourceColumn": "MonthNo",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "Month",
+            "dataType": "string",
+            "sourceColumn": "Month",
+            "sortByColumn": "MonthNo",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Date",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Dates = List.Dates(#date(2015, 1, 1), Duration.Days(#date(2017, 12, 31) - #date(2015, 1, 1)) + 1, #duration(1, 0, 0, 0)),",
+                "    T = Table.FromList(Dates, Splitter.SplitByNothing(), {\"Date\"}),",
+                "    Typed = Table.TransformColumnTypes(T, {{\"Date\", type date}}),",
+                "    AddYear = Table.AddColumn(Typed, \"Year\", each Date.Year([Date]), Int64.Type),",
+                "    AddMonthNo = Table.AddColumn(AddYear, \"MonthNo\", each Date.Year([Date]) * 100 + Date.Month([Date]), Int64.Type),",
+                "    AddMonth = Table.AddColumn(AddMonthNo, \"Month\", each Date.ToText([Date], \"MMM yyyy\", \"en-US\"), type text)",
+                "in",
+                "    AddMonth"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_shipping_mode",
+        "columns": [
+          {
+            "name": "shipping_mode",
+            "dataType": "string",
+            "sourceColumn": "shipping_mode",
+            "summarizeBy": "none",
+            "sortByColumn": "sort_order"
+          },
+          {
+            "name": "promised_days",
+            "dataType": "int64",
+            "sourceColumn": "promised_days",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sort_order",
+            "dataType": "int64",
+            "sourceColumn": "sort_order",
+            "summarizeBy": "none",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_shipping_mode",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"dim_shipping_mode.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"shipping_mode\", type text}, {\"promised_days\", Int64.Type}, {\"sort_order\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "dim_discount_band",
+        "columns": [
+          {
+            "name": "discount_band",
+            "dataType": "string",
+            "sourceColumn": "discount_band",
+            "summarizeBy": "none",
+            "sortByColumn": "sort_order"
+          },
+          {
+            "name": "sort_order",
+            "dataType": "int64",
+            "sourceColumn": "sort_order",
+            "summarizeBy": "none",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_discount_band",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"dim_discount_band.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"discount_band\", type text}, {\"sort_order\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "kpi_targets",
+        "columns": [
+          {
+            "name": "kpi",
+            "dataType": "string",
+            "sourceColumn": "kpi",
+            "summarizeBy": "none",
+            "sortByColumn": "sort_order"
+          },
+          {
+            "name": "rule",
+            "dataType": "string",
+            "sourceColumn": "rule",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "target",
+            "dataType": "double",
+            "sourceColumn": "target",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "sort_order",
+            "dataType": "int64",
+            "sourceColumn": "sort_order",
+            "summarizeBy": "none",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "kpi_targets",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"kpi_targets.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"kpi\", type text}, {\"rule\", type text}, {\"target\", type number}, {\"sort_order\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "bridge_steps",
+        "columns": [
+          {
+            "name": "step",
+            "dataType": "string",
+            "sourceColumn": "step",
+            "summarizeBy": "none",
+            "sortByColumn": "sort_order"
+          },
+          {
+            "name": "sort_order",
+            "dataType": "int64",
+            "sourceColumn": "sort_order",
+            "summarizeBy": "none",
+            "isHidden": true
+          }
+        ],
+        "partitions": [
+          {
+            "name": "bridge_steps",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"bridge_steps.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"step\", type text}, {\"sort_order\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "forecast",
+        "columns": [
+          {
+            "name": "series",
+            "dataType": "string",
+            "sourceColumn": "series",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "month",
+            "dataType": "dateTime",
+            "sourceColumn": "month",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "actual",
+            "dataType": "double",
+            "sourceColumn": "actual",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "test_prediction",
+            "dataType": "double",
+            "sourceColumn": "test_prediction",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "forecast",
+            "dataType": "double",
+            "sourceColumn": "forecast",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "best_model",
+            "dataType": "string",
+            "sourceColumn": "best_model",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "forecast",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"forecast.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"series\", type text}, {\"month\", type date}, {\"actual\", type number}, {\"test_prediction\", type number}, {\"forecast\", type number}, {\"best_model\", type text}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "forecast_error",
+        "columns": [
+          {
+            "name": "model",
+            "dataType": "string",
+            "sourceColumn": "model",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "orders_mape_pct",
+            "dataType": "double",
+            "sourceColumn": "orders_mape_pct",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          },
+          {
+            "name": "late_rate_mape_pct",
+            "dataType": "double",
+            "sourceColumn": "late_rate_mape_pct",
+            "summarizeBy": "none",
+            "formatString": "0.00"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "forecast_error",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFolder & \"forecast_error.csv\"), [Delimiter = \",\", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),",
+                "    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),",
+                "    Typed = Table.TransformColumnTypes(Promoted, {{\"model\", type text}, {\"orders_mape_pct\", type number}, {\"late_rate_mape_pct\", type number}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Discount Cap",
+        "columns": [
+          {
+            "name": "Discount Cap",
+            "dataType": "double",
+            "sourceColumn": "Discount Cap",
+            "formatString": "0%",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Discount Cap",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Values = List.Transform({0..25}, each _ / 100),",
+                "    T = Table.FromList(Values, Splitter.SplitByNothing(), {\"Discount Cap\"}),",
+                "    Typed = Table.TransformColumnTypes(T, {{\"Discount Cap\", type number}})",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "fact_date",
+        "fromTable": "fact_order_lines",
+        "fromColumn": "order_date",
+        "toTable": "Date",
+        "toColumn": "Date"
+      },
+      {
+        "name": "fact_mode",
+        "fromTable": "fact_order_lines",
+        "fromColumn": "shipping_mode",
+        "toTable": "dim_shipping_mode",
+        "toColumn": "shipping_mode"
+      },
+      {
+        "name": "fact_band",
+        "fromTable": "fact_order_lines",
+        "fromColumn": "discount_band",
+        "toTable": "dim_discount_band",
+        "toColumn": "discount_band"
+      }
+    ],
+    "expressions": [
+      {
+        "name": "DataFolder",
+        "kind": "m",
+        "expression": "\"C:\\projects\\order-fulfilment-plan-vs-actual\\powerbi\\data\\\" meta [IsParameterQuery = true, Type = \"Text\", IsParameterQueryRequired = true]"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DataFolder\", \"fact_order_lines\", \"Date\", \"dim_shipping_mode\", \"dim_discount_band\", \"kpi_targets\", \"bridge_steps\", \"forecast\", \"forecast_error\", \"Discount Cap\"]"
+      }
+    ]
+  }
+}

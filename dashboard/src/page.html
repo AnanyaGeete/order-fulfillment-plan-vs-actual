@@ -1,0 +1,293 @@
+<title>Plan vs Actual Order Dashboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a dispatch-board header (title, filters, tabs) over one working panel per tab; cards only for charts. */
+:root{
+  --bg:#eef1f4; --surface:#ffffff; --ink:#15202c; --muted:#5a6776; --line:#d6dde5; --soft:#f5f7f9;
+  --accent:#1f5ea8; --plan:#8c98a7;
+  --good:#1a8656; --warn:#b8750c; --bad:#c13a2d;
+  --good-bg:#e3f3ea; --warn-bg:#fbf0dc; --bad-bg:#f9e3e0;
+  --display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",Consolas,"Courier New",monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e141a; --surface:#16202a; --ink:#e4eaf0; --muted:#97a4b3; --line:#2a3644; --soft:#1b2632;
+  --accent:#6aa5e6; --plan:#7d8a99; --good:#45c08a; --warn:#e2a443; --bad:#ec6f62;
+  --good-bg:#16352a; --warn-bg:#3a2e17; --bad-bg:#3d1f1c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e141a; --surface:#16202a; --ink:#e4eaf0; --muted:#97a4b3; --line:#2a3644; --soft:#1b2632;
+  --accent:#6aa5e6; --plan:#7d8a99; --good:#45c08a; --warn:#e2a443; --bad:#ec6f62;
+  --good-bg:#16352a; --warn-bg:#3a2e17; --bad-bg:#3d1f1c; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--body);font-size:14px;line-height:1.5;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{background:var(--surface);border-bottom:1px solid var(--line)}
+header .wrap{padding-block:18px 0}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(26px,4vw,36px);line-height:1.1;margin:4px 0 6px;text-wrap:balance}
+.lede{color:var(--muted);max-width:75ch;margin:0 0 14px}
+.filters{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:end;padding-block:4px 14px}
+.filters label{display:flex;flex-direction:column;gap:3px;font-size:11.5px;color:var(--muted);font-family:var(--mono);letter-spacing:.04em;text-transform:uppercase}
+select,button{font:inherit;font-size:13.5px;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
+select{min-width:140px}
+button{cursor:pointer}
+button:hover,select:hover{border-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.reset{background:transparent}
+nav.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs a{font-family:var(--display);font-weight:600;font-size:16px;letter-spacing:.02em;color:var(--muted);text-decoration:none;padding:9px 14px 10px;border-bottom:3px solid transparent;white-space:nowrap}
+nav.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+nav.tabs a:hover{color:var(--ink)}
+main .wrap{padding-block:20px 40px}
+section.view{display:grid;gap:16px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;display:grid;gap:4px;align-content:start}
+.kpi .k{font-size:12px;color:var(--muted)}
+.kpi .v{font-family:var(--mono);font-size:26px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.1}
+.kpi .t{font-size:11.5px;color:var(--muted);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.chip{display:inline-block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:1px 7px;border-radius:999px}
+.chip.pass{background:var(--good-bg);color:var(--good)}
+.chip.fail{background:var(--bad-bg);color:var(--bad)}
+.chip.watch{background:var(--warn-bg);color:var(--warn)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+@media (max-width:860px){.grid2,.grid3{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.card h2{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.2;margin:0 0 2px;text-wrap:balance}
+.card .sub{color:var(--muted);font-size:12.5px;margin:0 0 8px}
+.chart{width:100%;min-height:40px}
+.chart svg{display:block;width:100%;height:auto}
+.chart text{fill:var(--muted);font-family:var(--body);font-size:11px}
+.chart .lbl{fill:var(--ink);font-family:var(--mono);font-size:11px}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.findings{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.findings li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.findings .n{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:2px}
+.findings b{font-weight:600}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{padding:6px 8px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:11.5px;font-weight:500;color:var(--muted);font-family:var(--mono);letter-spacing:.03em;text-transform:uppercase}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--soft)}
+tr.sel td{background:var(--soft);font-weight:600}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;border-radius:0;background:transparent;padding:5px 12px}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.big{font-family:var(--mono);font-size:30px;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.stat-row div{background:var(--soft);border-radius:6px;padding:8px 10px}
+.stat-row .k{font-size:11.5px;color:var(--muted)}
+.note{font-size:12.5px;color:var(--muted)}
+.heat td.c{text-align:center;font-family:var(--mono);font-size:12px;min-width:30px;padding:6px 3px}
+#t-grid th.n{padding:4px 2px;text-align:center}
+.prose{max-width:78ch}
+.prose h3{font-family:var(--display);font-weight:600;font-size:18px;margin:14px 0 4px}
+.prose p,.prose li{margin:4px 0}
+.prose code{font-family:var(--mono);font-size:12.5px;background:var(--soft);padding:0 4px;border-radius:3px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;counter-reset:s}
+.steps div{background:var(--soft);border-radius:6px;padding:10px 12px;font-size:13px}
+.steps b{display:block;font-family:var(--display);font-size:16px}
+
+.obj{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:860px){.obj{grid-template-columns:minmax(0,1fr)}}
+.obj .card{display:grid;gap:8px;align-content:start}
+.obj .tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.obj .goal{font-size:14px}
+.obj dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0;font-size:13px}
+.obj dt{color:var(--muted);font-size:12px;padding-top:1px}
+.obj dd{margin:0}
+.obj .res{font-family:var(--mono);font-size:13px;background:var(--soft);border-radius:6px;padding:8px 10px;line-height:1.5}
+.obj a.go{justify-self:start;font-family:var(--display);font-weight:600;font-size:15px;color:var(--accent);text-decoration:none;border-bottom:1.5px solid currentColor}
+.problem{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+@media (max-width:860px){.problem{grid-template-columns:minmax(0,1fr)}}
+.deliv td:first-child{font-weight:500}
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:5px;max-width:260px;z-index:20;line-height:1.4}
+footer{color:var(--muted);font-size:12px}
+footer .wrap{padding-block:0 30px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header>
+ <div class="wrap">
+  <div class="eyebrow">Order fulfilment &amp; profitability · DataCo supply-chain data · Jan 2015 to Sep 2017</div>
+  <h1>Plan vs Actual: where orders run late and profit leaks</h1>
+  <p class="lede">164,572 order lines compared against what was promised: delivery days against the promise, margin against the category's normal margin, and discounts against a cap. Filters apply to every tab except Project and Forecast.</p>
+  <div class="filters" role="group" aria-label="Filters">
+   <label for="f-yr">Year<select id="f-yr"></select></label>
+   <label for="f-mk">Market<select id="f-mk"></select></label>
+   <label for="f-md">Shipping mode<select id="f-md"></select></label>
+   <label for="f-sg">Customer segment<select id="f-sg"></select></label>
+   <button class="reset" id="f-reset" type="button">Clear filters</button>
+  </div>
+  <nav class="tabs" aria-label="Sections">
+   <a href="#project">Project</a><a href="#overview">Overview</a><a href="#delivery">Delivery</a><a href="#profit">Profit</a><a href="#forecast">Forecast</a><a href="#report">Monthly report</a><a href="#method">Method</a>
+  </nav>
+ </div>
+</header>
+
+<main><div class="wrap">
+
+<section class="view" id="v-project">
+ <div class="problem">
+  <div class="card prose"><div class="eyebrow">Business problem</div>
+   <h2 style="font-size:22px;margin-top:4px">Orders are promised a delivery date and a price. How often does the business keep those promises, and what does missing them cost?</h2>
+   <p>A retailer selling sports goods, clothing and electronics in five world markets. This project compares the <b>plan</b> (promised delivery days, the category's normal margin, a discount limit) with the <b>actual</b> result for every order line, explains the gaps, forecasts the next quarter and automates the monthly check.</p></div>
+  <div class="card"><div class="eyebrow">Scope</div>
+   <dl style="display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:8px 0 0;font-size:13px">
+    <dt class="note">Data</dt><dd>DataCo public supply-chain dataset</dd>
+    <dt class="note">Order lines</dt><dd style="font-family:var(--mono)">164,572 (54,854 orders)</dd>
+    <dt class="note">Period</dt><dd>Jan 2015 to Sep 2017 (33 months)</dd>
+    <dt class="note">Markets</dt><dd>Africa, Europe, LATAM, Pacific Asia, USCA</dd>
+    <dt class="note">Tools</dt><dd>PostgreSQL (SQL) · Power BI · Python · Excel VBA</dd>
+   </dl>
+   <p class="note" style="margin-top:10px">Why this period: public datasets with promised dates, discounts and profit for every order line are rare, because companies keep their order data private. This is the most complete public one. The methods apply unchanged to any company's recent data.</p></div>
+ </div>
+ <div class="obj">
+  <div class="card"><div class="tag">Objective 1 · Plan vs actual</div>
+   <div class="goal">Compare promised vs actual delivery days and expected vs actual margin by market, category and shipping mode, and flag order lines outside tolerance limits.</div>
+   <dl><dt>Method</dt><dd>PostgreSQL view with slippage, on-time and tolerance flags (±1 day; margin 10 points below the category median)</dd><dt>Files</dt><dd><code>sql/01_view.sql</code>, <code>sql/03_tolerance.sql</code></dd></dl>
+   <div class="res">42.7% on time · 23.7% of lines break the 1-day tolerance<br>38.5% of lines fall below the margin tolerance</div>
+   <a class="go" href="#delivery">See Delivery →</a></div>
+  <div class="card"><div class="tag">Objective 2 · Dashboard and cost-saving case</div>
+   <div class="goal">Build an interactive dashboard with drill-downs and a margin bridge (list price, discount, cost, profit) showing where delays and discounting reduce profit, and make a business case for capping excess discounts.</div>
+   <dl><dt>Method</dt><dd>Power BI report and this interactive version; SQL estimate of discount kept under 5%, 10% and 15% caps</dd><dt>Files</dt><dd><code>powerbi/</code>, <code>docs/index.html</code>, <code>sql/04_cost_saving.sql</code></dd></dl>
+   <div class="res">Discounts $3.32M vs profit $3.53M (94%)<br>10% cap keeps up to $1.02M (+29% profit)</div>
+   <a class="go" href="#profit">See Profit →</a></div>
+  <div class="card"><div class="tag">Objective 3 · Forecast</div>
+   <div class="goal">Forecast monthly orders and the late-delivery rate, and test forecast accuracy on held-back months.</div>
+   <dl><dt>Method</dt><dd>Four models trained on 27 months, tested on 6 held-back months (MAPE); best model forecasts Oct to Dec 2017</dd><dt>Files</dt><dd><code>python/forecast.py</code></dd></dl>
+   <div class="res">Orders: Holt-Winters, 0.9% error<br>Late rate: 3-month average, 1.3% error · forecast 57.8% late</div>
+   <a class="go" href="#forecast">See Forecast →</a></div>
+  <div class="card"><div class="tag">Objective 4 · Automated monthly report</div>
+   <div class="goal">Automate a one-click Excel VBA monthly report that checks each KPI against its target and produces a standard pass/fail summary.</div>
+   <dl><dt>Method</dt><dd>Excel workbook with a Targets sheet and formulas; VBA macro loads a month's extract and saves the report as PDF</dd><dt>Files</dt><dd><code>excel/</code>, <code>vba/ReportMacro.bas</code>, <code>sql/06_monthly_extract.sql</code></dd></dl>
+   <div class="res">6 KPIs checked every month<br>Sep 2017: 1 of 6 passed (only margin on target)</div>
+   <a class="go" href="#report">See Monthly report →</a></div>
+ </div>
+ <div class="card"><h2>Deliverables</h2><p class="sub">Everything produced, and where to find it in the repository</p>
+  <div class="tbl"><table class="deliv"><thead><tr><th>Deliverable</th><th>What it is</th><th>Location</th></tr></thead><tbody>
+   <tr><td>SQL analysis</td><td>Clean view, 6 business questions, tolerance flags, discount-cap case, extracts</td><td><code>sql/</code></td></tr>
+   <tr><td>Power BI report</td><td>Data model, DAX measures, 6 report pages, theme, PDF export</td><td><code>powerbi/</code></td></tr>
+   <tr><td>Interactive dashboard</td><td>This page, published on GitHub Pages</td><td><code>docs/index.html</code></td></tr>
+   <tr><td>Forecast</td><td>Model comparison, error on held-back months, 3-month forecast and chart</td><td><code>python/forecast.py</code>, <code>images/forecast.png</code></td></tr>
+   <tr><td>Monthly KPI report</td><td>Excel template, VBA macro and a sample PDF report</td><td><code>excel/</code>, <code>vba/</code>, <code>reports/</code></td></tr>
+   <tr><td>Findings and recommendations</td><td>Seven findings, five recommendations, data checks and limitations</td><td><code>README.md</code></td></tr>
+  </tbody></table></div></div>
+</section>
+
+<section class="view" id="v-overview" hidden>
+ <div class="kpis" id="kpis"></div>
+ <div class="grid2">
+  <div class="card"><h2>On-time delivery by month</h2><p class="sub">Share of order lines delivered within the promised days · dashed line = 45% target</p><div class="chart" id="c-ontime"></div></div>
+  <div class="card"><h2>Profit margin by month</h2><p class="sub">Profit ÷ amount paid · dashed line = 12% target</p><div class="chart" id="c-margin"></div></div>
+ </div>
+ <div class="grid3">
+  <div class="card"><h2>What the data says</h2><p class="sub">Findings on the full data. The numbers in the charts follow your filters.</p>
+   <ol class="findings" id="findings"></ol></div>
+  <div class="card"><h2>Delivery against the promise, by shipping mode</h2><p class="sub">On time · up to 1 day late (inside tolerance) · more than 1 day late</p><div class="chart" id="c-modestack"></div>
+   <div class="legend"><span><i style="background:var(--good)"></i>On time</span><span><i style="background:var(--warn)"></i>1 day late</span><span><i style="background:var(--bad)"></i>2+ days late</span></div></div>
+ </div>
+</section>
+
+<section class="view" id="v-delivery" hidden>
+ <div class="grid2">
+  <div class="card"><h2>Promised vs actual delivery days</h2><p class="sub">Grey = promised, colour = actual average. The gap is the slippage.</p><div class="chart" id="c-dumbbell"></div>
+   <div class="legend"><span><i style="background:var(--plan)"></i>Promised</span><span><i style="background:var(--bad)"></i>Actual (late)</span><span><i style="background:var(--good)"></i>Actual (early or on time)</span></div></div>
+  <div class="card"><h2>How late? Slippage distribution</h2><p class="sub">Order lines by actual minus promised days</p><div class="chart" id="c-slip"></div></div>
+ </div>
+ <div class="grid3">
+  <div class="card"><h2>Tolerance breaches: market × shipping mode</h2><p class="sub">% of order lines more than 1 day late. Click a market to see its regions.</p><div class="tbl" id="t-heat"></div></div>
+  <div class="card"><h2 id="drill-title">Regions</h2><p class="sub" id="drill-sub">Pick a market in the table on the left.</p><div class="tbl" id="t-drill"></div></div>
+ </div>
+</section>
+
+<section class="view" id="v-profit" hidden>
+ <div class="grid2">
+  <div class="card"><h2>Margin bridge: from list price to profit</h2><p class="sub">Every dollar of gross sales, step by step (US$)</p><div class="chart" id="c-bridge"></div>
+   <div class="stat-row" id="loss-stats"></div></div>
+  <div class="card"><h2>Discount cap: business case</h2><p class="sub">If discounts above the cap were not given and the same orders were still placed (upper-bound estimate)</p>
+   <div class="seg" role="group" aria-label="Discount cap"><button type="button" data-cap="5">Cap 5%</button><button type="button" data-cap="10" aria-pressed="true">Cap 10%</button><button type="button" data-cap="15">Cap 15%</button></div>
+   <div class="stat-row" id="cap-stats"></div>
+   <h2 style="margin-top:14px;font-size:16px">Margin % by discount band</h2><p class="sub">Margin barely moves with discount, so the cost of discounting shows up in dollars, not in margin %</p><div class="chart" id="c-band"></div></div>
+ </div>
+ <div class="card"><h2>Expected vs actual margin by category</h2><p class="sub">Expected = the category's median line margin (27%). Breach = a line more than 10 points below it. Categories with over $100k sales, largest first.</p><div class="tbl" id="t-cat"></div></div>
+</section>
+
+<section class="view" id="v-forecast" hidden>
+ <div class="grid2">
+  <div class="card"><h2>Orders per month</h2><p class="sub" id="fc-sub-orders"></p><div class="chart" id="c-fc-orders"></div></div>
+  <div class="card"><h2>Late-delivery rate</h2><p class="sub" id="fc-sub-late"></p><div class="chart" id="c-fc-late"></div></div>
+ </div>
+ <div class="legend"><span><i style="background:var(--accent)"></i>Actual</span><span><i style="background:var(--warn)"></i>Best model on the 6 held-back months</span><span><i style="background:var(--good)"></i>Forecast Oct–Dec 2017</span></div>
+ <div class="grid2">
+  <div class="card"><h2>Forecast error by model</h2><p class="sub">MAPE on Apr–Sep 2017 (trained on Jan 2015–Mar 2017). Lower is better.</p><div class="tbl" id="t-mape"></div></div>
+  <div class="card prose"><h2>How to read this</h2>
+   <p>Orders and the late rate are very steady over almost three years, so even simple models forecast them within 1–2%. The useful message for planning: without a change in process, about <b>58% of lines will keep arriving later than promised</b> next quarter.</p>
+   <p class="note">The forecast uses the full data, not the filters. Months from Oct 2017 are excluded because the data changes shape there (see Method).</p></div>
+ </div>
+</section>
+
+<section class="view" id="v-report" hidden>
+ <div class="card">
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:space-between">
+   <div><h2>Monthly KPI report</h2><p class="sub">The same check the one-click Excel report runs: each KPI against its target, pass or fail.</p></div>
+   <label for="r-month" class="eyebrow" style="display:flex;flex-direction:column;gap:3px">Month<select id="r-month"></select></label>
+  </div>
+  <div class="tbl" id="t-report"></div>
+ </div>
+ <div class="card"><h2>Pass / fail across all months</h2><p class="sub">Each cell is one KPI in one month. Hover for the value.</p><div class="tbl" id="t-grid"></div></div>
+</section>
+
+<section class="view" id="v-method" hidden>
+ <div class="card"><h2>How the analysis was built</h2>
+  <div class="steps">
+   <div><b>1 · Load</b>Python reads the public CSV, keeps 24 needed columns and drops all customer personal data.</div>
+   <div><b>2 · Clean</b>A PostgreSQL view removes cancelled and suspected-fraud orders and adds slippage, on-time and tolerance flags.</div>
+   <div><b>3 · Compare</b>SQL compares promised vs actual days and actual vs expected margin, with tolerance limits.</div>
+   <div><b>4 · Business case</b>SQL estimates the profit given away by discounts above a cap.</div>
+   <div><b>5 · Forecast</b>Python tests four models on held-back months and keeps the most accurate.</div>
+   <div><b>6 · Report</b>An Excel VBA macro checks each month's KPIs against targets; this page shows the same result.</div>
+  </div></div>
+ <div class="grid2">
+  <div class="card prose"><h2>Definitions</h2>
+   <ul>
+    <li><b>Slippage</b> = actual days − promised days. Above 0 is late.</li>
+    <li><b>On time</b> = delivered within the promised days.</li>
+    <li><b>Tolerance</b> = up to 1 day late is accepted; more than 1 day is a <b>breach</b>.</li>
+    <li><b>Margin</b> = profit ÷ amount paid (sales − discount), summed, not averaged per line.</li>
+    <li><b>Expected margin</b> = the category's median line margin; a line more than 10 points below it is a margin breach.</li>
+    <li><b>Cap saving</b> = discount given above the cap rate × sales, assuming the same orders and costs.</li>
+   </ul>
+   <h3>Targets used in the report</h3>
+   <ul id="targets-list"></ul>
+   <p class="note">Targets are set for this study; a real business would agree them with the operations and finance teams.</p></div>
+  <div class="card prose"><h2>Data checks</h2>
+   <ul>
+    <li><b>180,519</b> raw order lines, 53 columns, no missing values in the fields used, no duplicate line ids.</li>
+    <li>Sales = unit price × quantity on every line (largest difference 0.00002), and amount paid = sales − discount (largest difference 0.01).</li>
+    <li><b>7,754</b> cancelled or suspected-fraud lines removed; they never shipped.</li>
+    <li>Discount rates are stored as floats (0.100000001), so they are rounded before grouping into bands.</li>
+    <li>From <b>Oct 2017</b> the data changes shape: about 1 line per order instead of 3, and the category mix drops from 24 to as few as 8. Those 8,193 lines are left out, so the main window is Jan 2015 to Sep 2017.</li>
+   </ul>
+   <h3>Limitations</h3>
+   <ul>
+    <li>Delivery and margin patterns are almost identical across markets, which suggests the public dataset is partly simulated. The method transfers to real data; the specific numbers describe this dataset only.</li>
+    <li>The discount-cap saving is an upper bound: some customers might not buy without the discount.</li>
+    <li>Expected margin is a historical median, not a company budget.</li>
+   </ul>
+   <h3>Source</h3>
+   <p>Constante, F., Silva, F. and Pereira, A. (2019). DataCo Smart Supply Chain for Big Data Analysis. Mendeley Data, V5. doi:10.17632/8gx2fvg2k6.5</p></div>
+ </div>
+</section>
+
+</div></main>
+<footer><div class="wrap">Built with PostgreSQL, Python, Power BI and Excel VBA · Author: Ananya Geete</div></footer>
+<div id="tip" hidden></div>

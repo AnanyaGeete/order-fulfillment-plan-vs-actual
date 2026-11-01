@@ -1,0 +1,7 @@
+kpi,rule,target,sort_order
+On-time delivery,>=,0.45,1
+Within 1-day tolerance,>=,0.8,2
+Average slippage (days),<=,0.5,3
+Profit margin,>=,0.12,4
+Discount as % of gross sales,<=,0.1,5
+Loss-making order lines,<=,0.15,6

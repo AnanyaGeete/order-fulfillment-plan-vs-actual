@@ -1,0 +1,107 @@
+// =====================================================================
+// Power BI measures for the Plan vs Actual report
+// Create each one with Home > New measure (put them in fact_order_lines,
+// or in an empty "_Measures" table). Table names match powerbi/data/*.csv.
+// =====================================================================
+
+// ---------- calendar table (Modeling > New table) ----------
+Date =
+ADDCOLUMNS (
+    CALENDAR ( DATE ( 2015, 1, 1 ), DATE ( 2017, 12, 31 ) ),
+    "Year", YEAR ( [Date] ),
+    "Month", FORMAT ( [Date], "MMM yyyy" ),
+    "MonthNo", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+    "MonthStart", DATE ( YEAR ( [Date] ), MONTH ( [Date] ), 1 )
+)
+// Then: Date[Month] > Sort by column > MonthNo. Mark as date table.
+// Relationships: Date[Date] 1-* fact_order_lines[order_date]
+//                dim_shipping_mode[shipping_mode] 1-* fact_order_lines[shipping_mode]
+//                dim_discount_band[discount_band] 1-* fact_order_lines[discount_band]
+// kpi_targets, bridge_steps, forecast and forecast_error stay unlinked.
+
+// ---------- volume ----------
+Order Lines = COUNTROWS ( fact_order_lines )
+Orders = DISTINCTCOUNT ( fact_order_lines[order_id] )
+
+// ---------- delivery: plan vs actual ----------
+Avg Promised Days = AVERAGE ( fact_order_lines[days_scheduled] )
+Avg Actual Days = AVERAGE ( fact_order_lines[days_real] )
+Avg Slippage = AVERAGE ( fact_order_lines[slippage_days] )
+On-time % = DIVIDE ( SUM ( fact_order_lines[on_time] ), [Order Lines] )
+Within Tolerance % = DIVIDE ( SUM ( fact_order_lines[within_tolerance] ), [Order Lines] )
+One Day Late % = [Within Tolerance %] - [On-time %]
+Breach % = DIVIDE ( SUM ( fact_order_lines[delivery_breach] ), [Order Lines] )
+Late Lines = [Order Lines] - SUM ( fact_order_lines[on_time] )
+
+// ---------- money ----------
+Gross Sales = SUM ( fact_order_lines[sales] )
+Discount = SUM ( fact_order_lines[discount] )
+Amount Paid = SUM ( fact_order_lines[amount_paid] )
+Cost = SUM ( fact_order_lines[cost] )
+Profit = SUM ( fact_order_lines[profit] )
+Margin % = DIVIDE ( [Profit], [Amount Paid] )
+Discount % of Sales = DIVIDE ( [Discount], [Gross Sales] )
+Discount vs Profit = DIVIDE ( [Discount], [Profit] )
+
+// ---------- margin: expected vs actual ----------
+Expected Margin % = AVERAGE ( fact_order_lines[expected_margin] )
+Margin Gap (pts) = ( [Margin %] - [Expected Margin %] ) * 100
+Margin Breach % = DIVIDE ( SUM ( fact_order_lines[margin_breach] ), [Order Lines] )
+Loss Lines % = DIVIDE ( CALCULATE ( [Order Lines], fact_order_lines[profit] < 0 ), [Order Lines] )
+Loss Amount = CALCULATE ( [Profit], fact_order_lines[profit] < 0 )
+Profit on Profitable Lines = CALCULATE ( [Profit], fact_order_lines[profit] >= 0 )
+
+// ---------- margin bridge (waterfall) ----------
+// Waterfall chart: Category = bridge_steps[step] (sorted by sort_order), Y-axis = Bridge Value.
+// The automatic "Total" bar equals Profit.
+Bridge Value =
+SWITCH (
+    SELECTEDVALUE ( bridge_steps[step] ),
+    "Gross sales", [Gross Sales],
+    "Discount", - [Discount],
+    "Cost", - [Cost]
+)
+
+// ---------- discount-cap business case ----------
+// Modeling > New parameter > Numeric range: name "Discount Cap", 0 to 0.25, increment 0.01, default 0.10.
+// Power BI creates the table 'Discount Cap' and the measure [Discount Cap Value]; if not, add:
+// Discount Cap Value = SELECTEDVALUE ( 'Discount Cap'[Discount Cap], 0.10 )
+Cap Saving =
+SUMX (
+    fact_order_lines,
+    MAX ( 0, fact_order_lines[discount] - [Discount Cap Value] * fact_order_lines[sales] )
+)
+Profit Uplift % = DIVIDE ( [Cap Saving], [Profit] )
+Lines Affected % =
+VAR cap = [Discount Cap Value]
+RETURN
+    DIVIDE ( CALCULATE ( [Order Lines], fact_order_lines[discount_pct] > cap ), [Order Lines] )
+
+// ---------- monthly KPI check (matrix: rows kpi_targets[kpi], columns Date[Month]) ----------
+KPI Actual =
+SWITCH (
+    SELECTEDVALUE ( kpi_targets[kpi] ),
+    "On-time delivery", [On-time %],
+    "Within 1-day tolerance", [Within Tolerance %],
+    "Average slippage (days)", [Avg Slippage],
+    "Profit margin", [Margin %],
+    "Discount as % of gross sales", [Discount % of Sales],
+    "Loss-making order lines", [Loss Lines %]
+)
+KPI Target = SELECTEDVALUE ( kpi_targets[target] )
+KPI Pass =
+VAR a = ROUND ( [KPI Actual], 3 )
+VAR t = [KPI Target]
+RETURN
+    IF (
+        ISBLANK ( a ), BLANK (),
+        IF ( SELECTEDVALUE ( kpi_targets[rule] ) = ">=", IF ( a >= t, 1, 0 ), IF ( a <= t, 1, 0 ) )
+    )
+KPI Status = SWITCH ( [KPI Pass], 1, "PASS", 0, "FAIL", BLANK () )
+KPIs Passed = SUMX ( VALUES ( kpi_targets[kpi] ), [KPI Pass] )
+
+// ---------- page titles that state the finding (use in a Card or as a dynamic title) ----------
+Title Delivery =
+"Only " & FORMAT ( [On-time %], "0.0%" ) & " of order lines arrive within the promised days"
+Title Profit =
+"Discounts of $" & FORMAT ( [Discount] / 1000000, "0.00" ) & "M vs profit of $" & FORMAT ( [Profit] / 1000000, "0.00" ) & "M"

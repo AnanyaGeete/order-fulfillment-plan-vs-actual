@@ -1,0 +1,5 @@
+model,orders_mape_pct,late_rate_mape_pct
+3-month average,1.92,1.32
+Same month last year,1.09,3.16
+Linear trend,1.54,1.46
+Holt-Winters,0.93,1.53

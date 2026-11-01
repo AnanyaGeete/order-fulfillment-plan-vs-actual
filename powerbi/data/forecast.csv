@@ -1,0 +1,73 @@
+series,month,actual,test_prediction,forecast,best_model
+Orders,2015-01-01,1713.0,,,Holt-Winters
+Orders,2015-02-01,1505.0,,,Holt-Winters
+Orders,2015-03-01,1702.0,,,Holt-Winters
+Orders,2015-04-01,1639.0,,,Holt-Winters
+Orders,2015-05-01,1684.0,,,Holt-Winters
+Orders,2015-06-01,1651.0,,,Holt-Winters
+Orders,2015-07-01,1704.0,,,Holt-Winters
+Orders,2015-08-01,1678.0,,,Holt-Winters
+Orders,2015-09-01,1634.0,,,Holt-Winters
+Orders,2015-10-01,1696.0,,,Holt-Winters
+Orders,2015-11-01,1658.0,,,Holt-Winters
+Orders,2015-12-01,1731.0,,,Holt-Winters
+Orders,2016-01-01,1703.0,,,Holt-Winters
+Orders,2016-02-01,1574.0,,,Holt-Winters
+Orders,2016-03-01,1700.0,,,Holt-Winters
+Orders,2016-04-01,1630.0,,,Holt-Winters
+Orders,2016-05-01,1675.0,,,Holt-Winters
+Orders,2016-06-01,1617.0,,,Holt-Winters
+Orders,2016-07-01,1662.0,,,Holt-Winters
+Orders,2016-08-01,1698.0,,,Holt-Winters
+Orders,2016-09-01,1664.0,,,Holt-Winters
+Orders,2016-10-01,1703.0,,,Holt-Winters
+Orders,2016-11-01,1639.0,,,Holt-Winters
+Orders,2016-12-01,1690.0,,,Holt-Winters
+Orders,2017-01-01,1685.0,,,Holt-Winters
+Orders,2017-02-01,1538.0,,,Holt-Winters
+Orders,2017-03-01,1710.0,,,Holt-Winters
+Orders,2017-04-01,1666.0,1627.9203,,Holt-Winters
+Orders,2017-05-01,1672.0,1673.0463,,Holt-Winters
+Orders,2017-06-01,1605.0,1628.2796,,Holt-Winters
+Orders,2017-07-01,1693.0,1678.1648,,Holt-Winters
+Orders,2017-08-01,1695.0,1682.4441,,Holt-Winters
+Orders,2017-09-01,1640.0,1642.4978,,Holt-Winters
+Orders,2017-10-01,,,1694.2356,Holt-Winters
+Orders,2017-11-01,,,1643.5547,Holt-Winters
+Orders,2017-12-01,,,1706.3958,Holt-Winters
+Late-delivery rate,2015-01-01,0.5632,,,3-month average
+Late-delivery rate,2015-02-01,0.5781,,,3-month average
+Late-delivery rate,2015-03-01,0.5727,,,3-month average
+Late-delivery rate,2015-04-01,0.5615,,,3-month average
+Late-delivery rate,2015-05-01,0.5801,,,3-month average
+Late-delivery rate,2015-06-01,0.566,,,3-month average
+Late-delivery rate,2015-07-01,0.5736,,,3-month average
+Late-delivery rate,2015-08-01,0.5843,,,3-month average
+Late-delivery rate,2015-09-01,0.5916,,,3-month average
+Late-delivery rate,2015-10-01,0.5728,,,3-month average
+Late-delivery rate,2015-11-01,0.566,,,3-month average
+Late-delivery rate,2015-12-01,0.5704,,,3-month average
+Late-delivery rate,2016-01-01,0.5788,,,3-month average
+Late-delivery rate,2016-02-01,0.5659,,,3-month average
+Late-delivery rate,2016-03-01,0.5786,,,3-month average
+Late-delivery rate,2016-04-01,0.5768,,,3-month average
+Late-delivery rate,2016-05-01,0.5851,,,3-month average
+Late-delivery rate,2016-06-01,0.5931,,,3-month average
+Late-delivery rate,2016-07-01,0.5517,,,3-month average
+Late-delivery rate,2016-08-01,0.5703,,,3-month average
+Late-delivery rate,2016-09-01,0.5707,,,3-month average
+Late-delivery rate,2016-10-01,0.568,,,3-month average
+Late-delivery rate,2016-11-01,0.5741,,,3-month average
+Late-delivery rate,2016-12-01,0.5847,,,3-month average
+Late-delivery rate,2017-01-01,0.5557,,,3-month average
+Late-delivery rate,2017-02-01,0.5737,,,3-month average
+Late-delivery rate,2017-03-01,0.5743,,,3-month average
+Late-delivery rate,2017-04-01,0.5629,0.5679,,3-month average
+Late-delivery rate,2017-05-01,0.5646,0.5679,,3-month average
+Late-delivery rate,2017-06-01,0.56,0.5679,,3-month average
+Late-delivery rate,2017-07-01,0.5766,0.5679,,3-month average
+Late-delivery rate,2017-08-01,0.5858,0.5679,,3-month average
+Late-delivery rate,2017-09-01,0.5707,0.5679,,3-month average
+Late-delivery rate,2017-10-01,,,0.5777,3-month average
+Late-delivery rate,2017-11-01,,,0.5777,3-month average
+Late-delivery rate,2017-12-01,,,0.5777,3-month average
